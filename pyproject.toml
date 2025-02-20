@@ -1,3 +1,56 @@
 [build-system]
-requires = ["setuptools >= 61.0"]
+requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "problog"
+version = "3.0.0"
+description = "ProbLog2: Probabilistic Logic Programming toolbox"
+authors = [{ name = "ProbLog Team" }]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+dependencies = ["pysdd"]
+keywords = ["prolog, probabilistic logics"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: Apache Software License",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Prolog",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.urls]
+Homepage = "https://dtai.cs.kuleuven.be/problog"
+Documentation = "https://problog.readthedocs.io/en/latest/"
+Repository = "https://github.com/ML-KULeuven/problog"
+
+[project.scripts]
+problog = "problog.tasks:main"
+
+[tool.setuptools.package-data]
+problog = [
+    "bin/darwin/cnf2dDNNF_wine",
+    "bin/darwin/dsharp",
+    "bin/darwin/maxsatz",
+    "bin/linux/dsharp",
+    "bin/linux/maxsatz",
+    "bin/source/maxsatz/maxsatz2009.c",
+    "bin/windows/dsharp.exe",
+    "bin/windows/maxsatz.exe",
+    "bin/windows/libgcc_s_dw2-1.dll",
+    "bin/windows/libstdc++-6.dll",
+    "web/*.py",
+    "web/editor_local.html",
+    "web/editor_adv.html",
+    "web/js/problog_editor.js",
+    "library/*.pl",
+    "library/*.py",
+    "library/nlp4plp.d/*",
+]
