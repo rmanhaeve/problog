@@ -32,13 +32,10 @@ from .formula import LogicDAG, LogicFormula
 from .util import mktempfile
 
 # noinspection PyBroadException
-try:
-    from pysdd import sdd
-    from pysdd.iterator import SddIterator
-    from pysdd.util import sdd_to_dot
-    from pysdd.sdd import Vtree
-except Exception as err:
-    sdd = None
+from pysdd import sdd
+from pysdd.iterator import SddIterator
+from pysdd.util import sdd_to_dot
+from pysdd.sdd import Vtree
 
 
 class SDD(DD):
@@ -68,10 +65,6 @@ class SDD(DD):
         :param kwdargs:
         :raise InstallError: When the SDD library is not available.
         """
-        if sdd is None:
-            raise InstallError(
-                "The SDD library is not available. Please install the PySDD package."
-            )
         self.auto_gc = sdd_auto_gc
         self._var_constraint = var_constraint
         self._init_varcount = init_varcount

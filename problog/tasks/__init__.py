@@ -22,7 +22,6 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from problog.util import load_module
-from problog import version
 
 problog_tasks = {}
 problog_tasks["prob"] = "problog.tasks.probability"
@@ -79,12 +78,7 @@ def main(argv=None):
         argv = sys.argv[1:]
 
     if len(argv) > 0:
-        if argv[0] == "install":
-            from .. import setup
-
-            setup.install()
-            return
-        elif argv[0] == "info":
+        if argv[0] == "info":
             from problog.core import list_transformations
 
             list_transformations()
@@ -97,9 +91,7 @@ def main(argv=None):
                 os.path.join(os.path.dirname(__file__), "..")
             ).run(test_results)
             return
-        elif argv[0] == "--version":
-            print(version.version)
-            return
+
         else:
             return run_task(argv)
     else:

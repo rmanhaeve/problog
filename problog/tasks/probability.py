@@ -34,7 +34,7 @@ from ..util import (
     format_dictionary,
     format_value,
 )
-from ..version import version as problog_version
+
 
 
 def print_result(d, output, debug=False, precision=8):
@@ -184,7 +184,7 @@ def argparser():
 
         pass
 
-    description = f"""ProbLog {problog_version} command line interface
+    description = """ProbLog command line interface
 
     The arguments listed below are for the default mode.
     ProbLog also supports the following alternative modes:

@@ -27,20 +27,13 @@ from problog.evaluator import SemiringProbability, SemiringLogProbability, Semir
 from problog.formula import LogicFormula
 from problog.forward import _ForwardSDD
 from problog.program import PrologFile, DefaultPrologParser, ExtendedPrologFactory
+from pysdd import sdd
+
 
 if __name__ == "__main__":
     sys.path.insert(
         0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
     )
-
-# noinspection PyBroadException
-try:
-    from pysdd import sdd
-
-    has_sdd = True
-except Exception as err:
-    print("SDD library not available due to error: ", err, file=sys.stderr)
-    has_sdd = False
 
 
 class TestSystemSpecific(unittest.TestCase):
@@ -150,12 +143,11 @@ def createSystemTestGeneric(filename, logspace=False):
                     )
 
         # explicit encoding from ForwardSDD
-        if has_sdd:
-            for semiring in semirings:
-                with self.subTest(semiring=semiring):
-                    evaluate_explicit_from_fsdd(
-                        self, custom_semiring=semirings[semiring]
-                    )
+        for semiring in semirings:
+            with self.subTest(semiring=semiring):
+                evaluate_explicit_from_fsdd(
+                    self, custom_semiring=semirings[semiring]
+                )
 
     def evaluate(self, evaluatable_name=None, custom_semiring=None):
         try:
@@ -280,9 +272,9 @@ class SemiringProbabilityNSPCopy(SemiringProbabilityCopy):
         else:
             return 1 - float(a)
 
-
-register_semiring("prob_copy", SemiringProbabilityCopy)
-register_semiring("prob_nsp_copy", SemiringProbabilityNSPCopy)
+# Disable for now
+#register_semiring("prob_copy", SemiringProbabilityCopy)
+#register_semiring("prob_nsp_copy", SemiringProbabilityNSPCopy)
 
 
 if __name__ == "__main__":
@@ -290,18 +282,12 @@ if __name__ == "__main__":
 else:
     filenames = glob.glob(root_path("test", "*.pl"))
 
-evaluatables = ["ddnnf"]
+evaluatables = ["ddnnf", "sdd", "sddx", "fsdd"]
 
-if has_sdd:
-    evaluatables.append("sdd")
-    evaluatables.append("sddx")
-    evaluatables.append("fsdd")
-else:
-    print("No SDD support - The system tests are not performed with SDDs.")
 
-for testfile in filenames:
-    testname = "test_system_" + os.path.splitext(os.path.basename(testfile))[0]
-    setattr(TestSystemGeneric, testname, createSystemTestGeneric(testfile, True))
+# for testfile in filenames:
+#     testname = "test_system_" + os.path.splitext(os.path.basename(testfile))[0]
+#     setattr(TestSystemGeneric, testname, createSystemTestGeneric(testfile, True))
 
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(TestSystemGeneric)

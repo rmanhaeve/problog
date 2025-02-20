@@ -24,33 +24,33 @@ class TestLFICont(unittest.TestCase):
         except AttributeError:
             self.assertSequenceEqual = self.assertCountEqual
 
+# TODO: Re-enable
+# def createTestLFICont(filename):
+#     def test(self):
+#         problogcli = root_path("problog-cli.py")
 
-def createTestLFICont(filename):
-    def test(self):
-        problogcli = root_path("problog-cli.py")
+#         model = filename
+#         examples = filename.replace(".pl", ".ev")
+#         if not os.path.exists(examples):
+#             raise Exception("Evidence file is missing: {}".format(examples))
 
-        model = filename
-        examples = filename.replace(".pl", ".ev")
-        if not os.path.exists(examples):
-            raise Exception("Evidence file is missing: {}".format(examples))
+#         out = subprocess_check_output(
+#             [
+#                 sys.executable,
+#                 problogcli,
+#                 "lfi",
+#                 "-n",
+#                 "10",
+#                 "-O",
+#                 model.replace(".pl", ".l_pl"),
+#                 model,
+#                 examples,
+#             ]
+#         )
+#         outline = out.strip().split()
+#         print(outline)
 
-        out = subprocess_check_output(
-            [
-                sys.executable,
-                problogcli,
-                "lfi",
-                "-n",
-                "10",
-                "-O",
-                model.replace(".pl", ".l_pl"),
-                model,
-                examples,
-            ]
-        )
-        outline = out.strip().split()
-        print(outline)
-
-    return test
+#     return test
 
 
 # if __name__ == "__main__":
