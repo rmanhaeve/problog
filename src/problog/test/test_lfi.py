@@ -3,7 +3,7 @@ test_lfi.py - Test class for LFI problems
 """
 import random
 
-from problog import root_path
+from problog.available import root_path
 import unittest
 import os
 import sys

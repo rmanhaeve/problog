@@ -20,8 +20,7 @@ import os
 import sys
 import unittest
 
-from problog import get_evaluatable, register_semiring
-from problog import root_path
+from problog.available import register_semiring, get_evaluatable, root_path
 from problog.ddnnf_formula import DDNNF
 from problog.evaluator import SemiringProbability, SemiringLogProbability, Semiring
 from problog.formula import LogicFormula

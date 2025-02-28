@@ -703,7 +703,7 @@ class ClauseDB(LogicProgram):
             and filename.functor == "library"
             and filename.arity == 1
         ):
-            from . import library_paths
+            from .available import library_paths
 
             libname = unquote(str(filename.args[0]))
             for path in library_paths:

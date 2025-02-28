@@ -22,7 +22,7 @@ import logging
 import sys
 import traceback
 
-from .. import get_evaluatables, get_evaluatable
+from problog.available import get_evaluatables, get_evaluatable
 from ..engine import DefaultEngine
 from ..errors import process_error, ProbLogError
 from ..logic import Term

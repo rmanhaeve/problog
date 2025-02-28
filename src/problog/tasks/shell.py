@@ -9,7 +9,7 @@ except:
 
 from ..program import PrologString
 from ..engine import DefaultEngine
-from .. import get_evaluatable
+from problog.available import get_evaluatable
 from ..util import format_dictionary
 from ..core import ProbLogError
 from ..logic import Term, Clause, term2str

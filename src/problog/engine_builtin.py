@@ -1816,7 +1816,8 @@ def _create_evaluator_and_semiring(*, semiring: typing.Optional[Term], evaluator
     :param engine: Engine executing the program.
     :param kwargs: Keyword arguments sent to the builtin calling this.
     """
-    from . import get_evaluatable, get_semiring
+    from .available import get_evaluatable
+    from .available import get_semiring
     evaluator_name = None
     semiring_name = None
     if evaluator:

@@ -341,42 +341,42 @@ def mktempfile(suffix=""):
     return filename
 
 
-def load_module(filename):
-    """Load a Python module from a filename or qualified module name.
-
-    If filename ends with ``.py``, the module is loaded from the given file.
-    Otherwise it is taken to be a module name reachable from the path.
-
-    Example:
-
-    .. code-block: python
-
-       pb_util = load_module('problog.util')
-       pb_util = load_module('problog/util.py')
-
-    :param filename: location of the module
-    :type filename: str
-    :return: loaded module
-    :rtype: module
-    """
-    if filename.endswith(".py"):
-        # extract module name from filepath (filename)
-        filename = os.path.abspath(os.path.join(os.path.dirname(__file__), filename))
-        (_, name) = os.path.split(filename)
-        (module_name, ext) = os.path.splitext(name)
-        # import module (module_name) from path (filename)
-        # source: https://docs.python.org/3/library/importlib.html#importing-a-source-file-directly
-        spec = importlib.util.spec_from_file_location(module_name, filename)
-        module = importlib.util.module_from_spec(spec)
-        sys.modules[module_name] = module
-        spec.loader.exec_module(module)
-        return module
-    else:
-        mod = __import__(filename)
-        components = filename.split(".")
-        for c in components[1:]:
-            mod = getattr(mod, c)
-        return mod
+# def load_module(filename):
+#     """Load a Python module from a filename or qualified module name.
+#
+#     If filename ends with ``.py``, the module is loaded from the given file.
+#     Otherwise it is taken to be a module name reachable from the path.
+#
+#     Example:
+#
+#     .. code-block: python
+#
+#        pb_util = load_module('problog.util')
+#        pb_util = load_module('problog/util.py')
+#
+#     :param filename: location of the module
+#     :type filename: str
+#     :return: loaded module
+#     :rtype: module
+#     """
+#     if filename.endswith(".py"):
+#         # extract module name from filepath (filename)
+#         filename = os.path.abspath(os.path.join(os.path.dirname(__file__), filename))
+#         (_, name) = os.path.split(filename)
+#         (module_name, ext) = os.path.splitext(name)
+#         # import module (module_name) from path (filename)
+#         # source: https://docs.python.org/3/library/importlib.html#importing-a-source-file-directly
+#         spec = importlib.util.spec_from_file_location(module_name, filename)
+#         module = importlib.util.module_from_spec(spec)
+#         sys.modules[module_name] = module
+#         spec.loader.exec_module(module)
+#         return module
+#     else:
+#         mod = __import__(filename)
+#         components = filename.split(".")
+#         for c in components[1:]:
+#             mod = getattr(mod, c)
+#         return mod
 
 
 def format_value(data, precision=8):

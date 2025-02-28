@@ -29,7 +29,7 @@ if __name__ == "__main__":
         0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
     )
 
-from problog import root_path
+from problog.available import root_path
 
 
 class TestBNGeneric(unittest.TestCase):

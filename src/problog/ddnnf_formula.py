@@ -26,7 +26,7 @@ import subprocess
 import tempfile
 from collections import defaultdict
 
-from . import system_info
+# from .available import system_info
 from .cnf_formula import CNF
 from .constraint import ConstraintAD
 from .core import transform
@@ -42,8 +42,8 @@ class DSharpError(CompilationError):
 
     def __init__(self):
         msg = "DSharp has encountered an error"
-        if system_info["os"] == "darwin":
-            msg += ". This is a known issue. See KNOWN_ISSUES for details on how to resolve this problem"
+        # if system_info["os"] == "darwin":
+        #     msg += ". This is a known issue. See KNOWN_ISSUES for details on how to resolve this problem"
         CompilationError.__init__(self, msg)
 
 
@@ -233,10 +233,11 @@ class Compiler(object):
     @classmethod
     def get_default(cls):
         """Get default compiler for this system."""
-        if system_info.get("c2d", False):
-            return _compile_with_c2d
-        else:
-            return _compile_with_dsharp
+        # TODO: Check
+        # if system_info.get("c2d", False):
+        #     return _compile_with_c2d
+        # else:
+        return _compile_with_dsharp
 
     @classmethod
     def get(cls, name):
@@ -259,33 +260,33 @@ class Compiler(object):
         """
         cls.__compilers[name] = func
 
-
-if system_info.get("c2d", False):
-    # noinspection PyUnusedLocal
-    @transform(CNF, DDNNF)
-    def _compile_with_c2d(cnf, nnf=None, smooth=True, **kwdargs):
-        fd, cnf_file = tempfile.mkstemp(".cnf")
-        os.close(fd)
-        nnf_file = cnf_file + ".nnf"
-        if smooth:
-            smoothl = ["-smooth_all"]
-        else:
-            smoothl = []
-
-        cmd = ["cnf2dDNNF", "-dt_method", "0"] + smoothl + ["-reduce", "-in", cnf_file]
-
-        try:
-            os.remove(cnf_file)
-        except OSError:
-            pass
-        try:
-            os.remove(nnf_file)
-        except OSError:
-            pass
-
-        return _compile(cnf, cmd, cnf_file, nnf_file)
-
-    Compiler.add("c2d", _compile_with_c2d)
+# TODO
+# if system_info.get("c2d", False):
+#     # noinspection PyUnusedLocal
+#     @transform(CNF, DDNNF)
+#     def _compile_with_c2d(cnf, nnf=None, smooth=True, **kwdargs):
+#         fd, cnf_file = tempfile.mkstemp(".cnf")
+#         os.close(fd)
+#         nnf_file = cnf_file + ".nnf"
+#         if smooth:
+#             smoothl = ["-smooth_all"]
+#         else:
+#             smoothl = []
+#
+#         cmd = ["cnf2dDNNF", "-dt_method", "0"] + smoothl + ["-reduce", "-in", cnf_file]
+#
+#         try:
+#             os.remove(cnf_file)
+#         except OSError:
+#             pass
+#         try:
+#             os.remove(nnf_file)
+#         except OSError:
+#             pass
+#
+#         return _compile(cnf, cmd, cnf_file, nnf_file)
+#
+#     Compiler.add("c2d", _compile_with_c2d)
 
 
 # noinspection PyUnusedLocal

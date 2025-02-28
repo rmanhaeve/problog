@@ -3,7 +3,7 @@ import sys
 import unittest
 from copy import deepcopy
 
-from problog import root_path
+from problog.available import root_path
 from problog import tasks
 
 

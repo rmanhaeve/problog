@@ -21,7 +21,7 @@ import stat
 import sys
 import traceback
 
-from .. import get_evaluatable, get_evaluatables, library_paths
+from problog.available import get_evaluatables, get_evaluatable, library_paths
 from ..engine import DefaultEngine
 from ..errors import process_error
 from ..evaluator import SemiringLogProbability, SemiringProbability, SemiringSymbolic

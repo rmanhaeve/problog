@@ -19,6 +19,7 @@ limitations under the License.
 import pytest
 
 import problog
+import problog.available
 import problog.evaluator
 from problog.engine import GenericEngine
 from problog.formula import LogicFormula
@@ -59,7 +60,7 @@ class MockSemiring(problog.evaluator.SemiringProbability):
         return cls()
 
 
-problog.register_semiring("mock", MockSemiring)
+problog.available.register_semiring("mock", MockSemiring)
 
 program = """
 0.5::a.
@@ -76,8 +77,8 @@ def test_subquery(eval_name):
     # Construct & ground program
     pl = PrologString(program.format(semiring="mock", evaluator=eval_name))
     lf = LogicFormula.create_from(pl, label_all=True, avoid_name_clash=True)
-    semiring = problog.get_semiring("logprob")()
-    kc_class = problog.get_evaluatable(name=eval_name, semiring=semiring)
+    semiring = problog.available.get_semiring("logprob")()
+    kc_class = problog.available.get_evaluatable(name=eval_name, semiring=semiring)
     kc = kc_class.create_from(lf)
 
     assert _MOCK_SEMIRING_CONSTRUCTED_COUNT == old_semiring_count + 1
@@ -116,8 +117,8 @@ def test_subquery_symbolic(eval_name, expected):
     pl = PrologString(program.format(semiring="symbolic", evaluator=eval_name))
     lf = LogicFormula.create_from(pl, label_all=True, avoid_name_clash=True)
     # Outer subquery is not symbolic.
-    semiring = problog.get_semiring("logprob")()
-    kc_class = problog.get_evaluatable(name=eval_name, semiring=semiring)
+    semiring = problog.available.get_semiring("logprob")()
+    kc_class = problog.available.get_evaluatable(name=eval_name, semiring=semiring)
     kc = kc_class.create_from(lf)
 
     results = kc.evaluate(semiring=semiring)

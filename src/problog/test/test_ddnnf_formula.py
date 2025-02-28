@@ -19,7 +19,7 @@ import re
 import subprocess
 import unittest
 
-from problog import root_path, system_info
+from problog.available import system_info, root_path
 
 
 class TestdSharpCompilation(unittest.TestCase):

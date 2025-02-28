@@ -1,6 +1,6 @@
 import unittest
 
-from problog import get_evaluatable
+from problog.available import get_evaluatable
 from problog.evaluator import SemiringProbability
 from problog.formula import LogicFormula
 from problog.program import PrologString

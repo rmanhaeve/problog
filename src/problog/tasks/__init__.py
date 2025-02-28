@@ -19,25 +19,24 @@ limitations under the License.
 import os
 import sys
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-
-from problog.util import load_module
-
-problog_tasks = {}
-problog_tasks["prob"] = "problog.tasks.probability"
-problog_tasks["mpe"] = "problog.tasks.mpe"
-problog_tasks["sample"] = "problog.tasks.sample"
-problog_tasks["ground"] = "problog.tasks.ground"
-problog_tasks["lfi"] = "problog.learning.lfi"
-problog_tasks["explain"] = "problog.tasks.explain"
-problog_tasks["web"] = "problog.web.server"
-problog_tasks["dt"] = "problog.tasks.dtproblog"
-problog_tasks["shell"] = "problog.tasks.shell"
-problog_tasks["bn"] = "problog.tasks.bayesnet"
-problog_tasks["parse"] = "problog.parser"
-problog_tasks["map"] = "problog.tasks.map"
-problog_tasks["time"] = "problog.tasks.time1"
-problog_tasks["constraint"] = "problog.tasks.constraint"
+from . import probability
+problog_tasks = {
+    'prob': probability.main
+}
+# problog_tasks["prob"] = "problog.tasks.probability"
+# problog_tasks["mpe"] = "problog.tasks.mpe"
+# problog_tasks["sample"] = "problog.tasks.sample"
+# problog_tasks["ground"] = "problog.tasks.ground"
+# problog_tasks["lfi"] = "problog.learning.lfi"
+# problog_tasks["explain"] = "problog.tasks.explain"
+# problog_tasks["web"] = "problog.web.server"
+# problog_tasks["dt"] = "problog.tasks.dtproblog"
+# problog_tasks["shell"] = "problog.tasks.shell"
+# problog_tasks["bn"] = "problog.tasks.bayesnet"
+# problog_tasks["parse"] = "problog.parser"
+# problog_tasks["map"] = "problog.tasks.map"
+# problog_tasks["time"] = "problog.tasks.time1"
+# problog_tasks["constraint"] = "problog.tasks.constraint"
 
 problog_default_task = "prob"
 
@@ -56,18 +55,18 @@ def run_task(argv):
     else:
         task = problog_default_task
         args = argv
-    return load_task(task).main(args)
+    return problog_tasks[task](args)
 
 
-def load_task(name):
-    """Load the module for executing the given task.
-
-    :param name: task name
-    :type name: str
-    :return: loaded module
-    :rtype: module
-    """
-    return load_module(problog_tasks[name])
+# def load_task(name):
+#     """Load the module for executing the given task.
+#
+#     :param name: task name
+#     :type name: str
+#     :return: loaded module
+#     :rtype: module
+#     """
+#     return load_module(problog_tasks[name])
 
 
 def main(argv=None):

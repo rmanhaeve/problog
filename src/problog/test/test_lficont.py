@@ -4,7 +4,7 @@ Module name
 
 from __future__ import print_function
 
-from problog import root_path
+from problog.available import root_path
 from problog.util import subprocess_call, subprocess_check_output
 import unittest
 import os

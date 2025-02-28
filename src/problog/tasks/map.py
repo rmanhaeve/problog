@@ -12,7 +12,7 @@ from .dtproblog import (
     print_result,
     print_result_json,
 )
-from .. import get_evaluatable
+from ..available import get_evaluatable
 from ..constraint import TrueConstraint
 from ..formula import LogicFormula
 from ..program import PrologFile

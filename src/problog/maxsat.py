@@ -21,7 +21,7 @@ Interface to MaxSAT solvers.
     See the License for the specific language governing permissions and
     limitations under the License.
 """
-from . import root_path
+from .available import root_path
 from .errors import ProbLogError
 from .util import mktempfile, subprocess_check_output, Timer
 

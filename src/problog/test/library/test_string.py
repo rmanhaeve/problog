@@ -17,7 +17,7 @@ limitations under the License.
 """
 import unittest
 
-from problog import get_evaluatable
+from problog.available import get_evaluatable
 from problog.program import PrologString
 
 

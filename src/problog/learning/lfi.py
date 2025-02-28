@@ -58,7 +58,7 @@ from problog.logic import (
 )
 from problog.program import PrologString, PrologFile, LogicProgram
 from problog.errors import InconsistentEvidenceError, process_error
-from problog import get_evaluatable, get_evaluatables
+from problog.available import get_evaluatables, get_evaluatable
 import traceback
 import timeit
 

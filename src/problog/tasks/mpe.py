@@ -21,7 +21,7 @@ limitations under the License.
 import sys
 import traceback
 
-from problog import get_evaluatable, register_semiring
+from problog.available import register_semiring, get_evaluatable
 from problog.cnf_formula import CNF
 from problog.constraint import TrueConstraint
 from problog.errors import process_error
