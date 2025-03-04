@@ -1895,7 +1895,7 @@ def _builtin_create_scope(term, scope, **kwargs):
     if mode in (0, 1):
         result = Object(_build_scope(term))
     else:
-        raise NotImplemented
+        raise NotImplementedError
     return [(term, result)]
 
 

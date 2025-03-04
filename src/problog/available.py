@@ -8,7 +8,7 @@ from . import sdd_formula
 from . import sdd_formula_explicit
 from . import bdd_formula
 from . import forward
-from . import kbest
+#from . import kbest
 # from . import core
 # from . import engine
 # from . import logic
@@ -27,7 +27,7 @@ _evaluatables: typing.Dict[str, typing.Type[evaluator.Evaluatable]] = {
     "bdd": bdd_formula.BDD,
     "nnf": ddnnf_formula.DDNNF,
     "ddnnf": ddnnf_formula.DDNNF,
-    "kbest": kbest.KBestFormula,
+ #   "kbest": kbest.KBestFormula,
     "fsdd": forward.ForwardSDD,
     "fbdd": forward.ForwardBDD,
 }

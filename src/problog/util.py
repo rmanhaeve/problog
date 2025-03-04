@@ -23,7 +23,7 @@ Provides useful utilities functions and classes.
 """
 import collections
 import collections.abc
-import distutils.spawn
+#import distutils.spawn
 import importlib.util
 import logging
 import os
