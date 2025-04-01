@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pyodide + ProbLog</title>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.27.4/full/pyodide.js"></script>
+    <script defer src="main.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Pyodide + ProbLog</h1>
+
+    <div class="container">
+        <label for="problog-input">Enter your ProbLog model:</label>
+        <textarea id="problog-input">
+0.5::rain.
+0.8::sprinkler :- \+rain.
+0.9::wet_grass :- rain.
+0.7::wet_grass :- sprinkler.
+        </textarea>
+        <button onclick="runProblog()">Run ProbLog</button>
+    </div>
+
+    <h2>Result:</h2>
+    <pre id="output"></pre>
+</body>
+</html>
